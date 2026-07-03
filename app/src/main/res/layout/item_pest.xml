@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginVertical="8dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="2dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tvPestName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pest Name"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#b71c1c" />
+
+        <TextView
+            android:id="@+id/tvAffectedCrops"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Affected Crops: Rice, Wheat"
+            android:textStyle="italic" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Solution:"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvSolution"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Apply neem oil spray every 2 weeks."
+            android:textColor="#555555" />
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginVertical="8dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="2dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tvSoilType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Soil Type"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#4e342e" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Properties:"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvProperties"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="Good water retention, rich in nutrients."
+            android:textColor="#555555" />
+            
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Suitable Crops:"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvSuitableCrops"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="Rice, Wheat, Sugarcane"
+            android:textStyle="italic" />
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
