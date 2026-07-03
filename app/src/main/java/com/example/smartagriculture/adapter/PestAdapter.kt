@@ -8,8 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.smartagriculture.R
 import com.example.smartagriculture.model.Pest
 
-class PestAdapter(private val pestList: List<Pest>) :
-    RecyclerView.Adapter<PestAdapter.PestViewHolder>() {
+class PestAdapter(
+    private var pestList: List<Pest>,
+    private val onItemClick: ((Pest) -> Unit)? = null
+) : RecyclerView.Adapter<PestAdapter.PestViewHolder>() {
 
     class PestViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvPestName: TextView = itemView.findViewById(R.id.tvPestName)
@@ -26,11 +28,20 @@ class PestAdapter(private val pestList: List<Pest>) :
     override fun onBindViewHolder(holder: PestViewHolder, position: Int) {
         val pest = pestList[position]
         holder.tvPestName.text = pest.pestName
-        holder.tvAffectedCrops.text = "Affected Crops: " + pest.affectedCrops
+        holder.tvAffectedCrops.text = "Affected Crops: ${pest.affectedCrops}"
         holder.tvSolution.text = pest.solution
+
+        holder.itemView.setOnClickListener {
+            onItemClick?.invoke(pest)
+        }
     }
 
     override fun getItemCount(): Int {
         return pestList.size
+    }
+
+    fun updateData(newList: List<Pest>) {
+        this.pestList = newList
+        notifyDataSetChanged()
     }
 }
