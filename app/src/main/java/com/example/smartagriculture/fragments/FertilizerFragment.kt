@@ -7,6 +7,11 @@ import androidx.fragment.app.Fragment
 import com.example.smartagriculture.R
 import com.example.smartagriculture.databinding.FragmentFertilizerBinding
 import com.example.smartagriculture.repository.FertilizerRepository
+import com.example.smartagriculture.network.GeminiService
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class FertilizerFragment : Fragment(R.layout.fragment_fertilizer) {
 
@@ -16,37 +21,58 @@ class FertilizerFragment : Fragment(R.layout.fragment_fertilizer) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentFertilizerBinding.bind(view)
 
-        val cropNames = FertilizerRepository.getAllCropNames()
+        val cropNames = listOf(
+            "Wheat", "Rice", "Maize", "Sugarcane", "Cotton", "Mustard", "Soybean", "Groundnut", 
+            "Bajra (Pearl Millet)", "Jowar (Sorghum)", "Barley", "Oats", "Ragi", 
+            "Tomato", "Potato", "Onion", "Garlic", "Ginger", "Turmeric",
+            "Cabbage", "Cauliflower", "Brinjal (Eggplant)", "Okra (Ladyfinger)", "Spinach",
+            "Apple", "Mango", "Banana", "Orange", "Papaya", "Grapes", "Pomegranate",
+            "Coffee", "Tea", "Rubber", "Coconut", "Cashew", "Almond",
+            "Chana (Chickpea)", "Toor (Pigeon Pea)", "Moong (Green Gram)", "Urad (Black Gram)"
+        )
         val adapter = ArrayAdapter(
             requireContext(),
-            android.R.layout.simple_spinner_dropdown_item,
+            android.R.layout.simple_dropdown_item_1line,
             cropNames
         )
-        binding?.spinnerCrop?.adapter = adapter
+        binding?.spinnerCrop?.setAdapter(adapter)
 
-        val soilTypes = listOf("Loamy", "Clay", "Sandy", "Silty", "Peaty", "Saline")
+        val soilTypes = listOf(
+            "Alluvial Soil", "Black Soil (Regur)", "Red Soil", "Laterite Soil", 
+            "Desert/Arid Soil", "Mountain/Forest Soil", "Peat/Marshy Soil",
+            "Loamy", "Clayey", "Sandy", "Silty", "Chalky", "Saline", "Alkaline"
+        )
         val soilAdapter = ArrayAdapter(
             requireContext(),
-            android.R.layout.simple_spinner_dropdown_item,
+            android.R.layout.simple_dropdown_item_1line,
             soilTypes
         )
-        binding?.spinnerSoilType?.adapter = soilAdapter
+        binding?.spinnerSoilType?.setAdapter(soilAdapter)
 
         binding?.btnGetRecommendation?.setOnClickListener {
-            val selectedCrop = binding?.spinnerCrop?.selectedItem?.toString() ?: ""
-            val soilType = binding?.spinnerSoilType?.selectedItem?.toString() ?: ""
+            val selectedCrop = binding?.spinnerCrop?.text?.toString() ?: ""
+            val soilType = binding?.spinnerSoilType?.text?.toString() ?: ""
 
-            val recommendation = FertilizerRepository.recommend(selectedCrop, soilType)
-
-            if (recommendation != null) {
-                binding?.tvResult?.text =
-                    "Recommended: ${recommendation.recommendedFertilizer}\n\nDosage: ${recommendation.dosage}"
-            } else {
-                binding?.tvResult?.text =
-                    "No specific recommendation found for $selectedCrop in $soilType soil.\nTry: NPK balanced fertilizer as a general option."
+            if (selectedCrop.isEmpty() || soilType.isEmpty()) {
+                binding?.tvResult?.text = "Please select or type both crop and soil type."
+                binding?.cardResult?.visibility = View.VISIBLE
+                return@setOnClickListener
             }
 
-            binding?.cardResult?.visibility = View.VISIBLE
+            binding?.btnGetRecommendation?.isEnabled = false
+            binding?.btnGetRecommendation?.text = "Getting AI Recommendation..."
+            binding?.cardResult?.visibility = View.GONE
+
+            CoroutineScope(Dispatchers.IO).launch {
+                val recommendation = GeminiService.getFertilizerRecommendation(selectedCrop, soilType)
+                
+                withContext(Dispatchers.Main) {
+                    binding?.tvResult?.text = recommendation
+                    binding?.cardResult?.visibility = View.VISIBLE
+                    binding?.btnGetRecommendation?.isEnabled = true
+                    binding?.btnGetRecommendation?.text = "Get Recommendation"
+                }
+            }
         }
     }
 

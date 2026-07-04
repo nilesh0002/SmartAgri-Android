@@ -73,4 +73,7 @@ dependencies {
     implementation(libs.mpandroidchart)
     implementation(libs.workmanager)
     implementation(libs.play.services.maps)
+    
+    // Gemini AI API
+    implementation("com.google.ai.client.generativeai:generativeai:0.9.0")
 }

@@ -24,8 +24,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.draw.shadow
 
-val PurpleStart = Color(0xFF9C27B0)
-val PurpleEnd = Color(0xFF673AB7)
+val PurpleStart = Color(0xFF2E7D32)
+val PurpleEnd = Color(0xFF4CAF50)
 
 @Composable
 fun AuthHeader(
