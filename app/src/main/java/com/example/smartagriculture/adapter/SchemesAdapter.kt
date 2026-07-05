@@ -8,7 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.smartagriculture.R
 import com.example.smartagriculture.model.Scheme
 
-class SchemesAdapter(private val schemes: List<Scheme>) : RecyclerView.Adapter<SchemesAdapter.SchemeViewHolder>() {
+class SchemesAdapter(
+    private val schemes: List<Scheme>,
+    private val onItemClick: (Scheme) -> Unit
+) : RecyclerView.Adapter<SchemesAdapter.SchemeViewHolder>() {
 
     class SchemeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val tvTitle: TextView = view.findViewById(R.id.tvSchemeTitle)
@@ -26,6 +29,7 @@ class SchemesAdapter(private val schemes: List<Scheme>) : RecyclerView.Adapter<S
         holder.tvTitle.text = scheme.title
         holder.tvDesc.text = scheme.description
         holder.tvEligibility.text = "Eligibility: ${scheme.eligibility}"
+        holder.itemView.setOnClickListener { onItemClick(scheme) }
     }
 
     override fun getItemCount(): Int = schemes.size

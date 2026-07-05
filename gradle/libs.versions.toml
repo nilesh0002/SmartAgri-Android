@@ -10,6 +10,7 @@ constraintlayout = "2.2.1"
 activityKtx = "1.13.0"
 navigationFragmentKtx = "2.9.8"
 navigationUiKtx = "2.9.8"
+navigationSafeArgs = "2.9.8"
 composeBom = "2025.01.00"
 activityCompose = "1.13.0"
 lifecycleRuntimeKtx = "2.9.0"
@@ -56,7 +57,9 @@ mpandroidchart = { group = "com.github.PhilJay", name = "MPAndroidChart", versio
 workmanager = { group = "androidx.work", name = "work-runtime-ktx", version.ref = "workmanager" }
 play-services-maps = { group = "com.google.android.gms", name = "play-services-maps", version.ref = "playServicesMaps" }
 [plugins]
-android-application = { id = "com.android.application", version.ref = "agp" }
-jetbrains-kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+androidApplication = { id = "com.android.application", version.ref = "agp" }
+kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlinCompose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 google-services = { id = "com.google.gms.google-services", version = "4.4.2" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+navigationSafeArgs = { id = "androidx.navigation.safeargs.kotlin", version.ref = "navigationSafeArgs" }

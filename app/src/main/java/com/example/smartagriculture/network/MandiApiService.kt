@@ -8,7 +8,8 @@ interface MandiApiService {
     suspend fun getMandiPrices(
         @Query("api-key") apiKey: String,
         @Query("format") format: String = "json",
-        @Query("limit") limit: Int = 20
+        @Query("limit") limit: Int = 20,
+        @Query("filters[commodity]") commodity: String? = null
     ): MandiResponse
 }
 

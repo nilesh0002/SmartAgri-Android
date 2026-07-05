@@ -5,7 +5,7 @@ import com.google.ai.client.generativeai.GenerativeModel
 object GeminiService {
     // Note: The user should provide an API key in a secure way in production.
     // For this prototype, we will allow it to be passed in or fail gracefully.
-    private const val API_KEY = "YOUR_API_KEY_HERE" 
+    private const val API_KEY = "YOUR_API_KEY_HERE"
     
     // We try to initialize the model. If it fails due to missing key, we handle it in getRecommendation.
     private val generativeModel = try {
@@ -19,7 +19,18 @@ object GeminiService {
 
     suspend fun getFertilizerRecommendation(crop: String, soil: String): String {
         if (API_KEY == "YOUR_API_KEY_HERE" || generativeModel == null) {
-            return "AI Recommendation Unavailable: Please provide a valid Gemini API key in GeminiService.kt.\n\nFallback Recommendation:\nNitrogen-rich fertilizers usually help most crops in $soil soil."
+            // Mock response for UI testing
+            kotlinx.coroutines.delay(1500) // Simulate network delay
+            return """
+                Fertilizer Recommendation for $crop in $soil:
+                
+                1. Analysis: $crop grows moderately well in $soil. This soil type tends to require more frequent nutrient replenishment.
+                2. Fertilizer Type: Use a balanced NPK fertilizer (like 10-10-10) enriched with Zinc and Boron. Organic compost is highly recommended.
+                3. Dosage: Apply 50 kg per acre in two split doses (baseline and 30 days after planting).
+                4. Pro Tip: Maintain adequate soil moisture when applying fertilizer to ensure optimal nutrient absorption!
+                
+                (Note: This is a simulated response. Please add a valid Google Gemini API key to GeminiService.kt for real AI recommendations.)
+            """.trimIndent()
         }
         
         val prompt = """
@@ -37,7 +48,7 @@ object GeminiService {
             val response = generativeModel.generateContent(prompt)
             response.text ?: "Could not generate a recommendation at this time."
         } catch (e: Exception) {
-            "Error communicating with AI service: ${e.localizedMessage}"
+            "AI Recommendation Unavailable: Please provide a valid Gemini API key in GeminiService.kt.\n\nFallback Recommendation:\nNitrogen-rich fertilizers usually help most crops in $soil soil."
         }
     }
 }

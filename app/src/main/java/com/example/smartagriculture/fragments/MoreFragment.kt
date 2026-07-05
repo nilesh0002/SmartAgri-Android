@@ -17,10 +17,6 @@ class MoreFragment : Fragment(R.layout.fragment_more) {
             findNavController().navigate(R.id.action_moreFragment_to_profileFragment)
         }
 
-        view.findViewById<View>(R.id.cardChangeLanguage).setOnClickListener {
-            findNavController().navigate(R.id.action_moreFragment_to_languageFragment)
-        }
-
         view.findViewById<View>(R.id.cardHelpSupport).setOnClickListener {
             findNavController().navigate(R.id.action_moreFragment_to_helpSupportFragment)
         }

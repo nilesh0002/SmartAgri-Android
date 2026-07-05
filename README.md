@@ -1,6 +1,6 @@
 # SmartAgri-Android 🌾
 
-A comprehensive Android application for modern farming, built with **Kotlin**, **Jetpack Compose**, and **XML Fragments**. SmartAgri is designed to empower farmers with real-time market data, tailored crop recommendations, and intelligent farming insights right at their fingertips.
+A comprehensive Android application for modern farming, built with **Kotlin** and **XML Fragments**. SmartAgri is designed to empower farmers with real-time market data, tailored crop recommendations, and intelligent farming insights right at their fingertips.
 
 ## 🚀 Features
 
@@ -9,20 +9,20 @@ A comprehensive Android application for modern farming, built with **Kotlin**, *
 *   **🌍 Soil Information:** Guides on different soil types and which crops thrive best in each environment.
 *   **📈 Live Market Prices (Mandi):** Real-time commodity pricing to help farmers get the best value for their produce.
 *   **🧪 Fertilizer Recommendation:** Intelligent suggestions for fertilizer usage based on crop and soil needs.
-*   **🔐 Secure Authentication:** Seamless Login and Registration screens built with modern Jetpack Compose.
-*   **✨ Beautiful UI:** Rich background images, dynamic layouts, and smooth navigation using the Navigation Component.
+*   **🔐 Secure Authentication:** Seamless Login and Registration flow styled with modern Material 3 inputs.
+*   **✨ Beautiful, Modern UI:** Completely overhauled with **Material Design 3**. Features dynamic `MaterialCardView` layouts, sleek rounded components, improved typography, and responsive, accessible interfaces for farmers.
 
 ## 🛠️ Tech Stack
 
 *   **Language:** Kotlin
-*   **UI Toolkit:** Jetpack Compose (Auth Screens) & XML Layouts (Main App)
+*   **UI Toolkit:** XML Layouts & Material Design 3 Components (MaterialCardView, TextInputLayout, BottomNavigationView)
 *   **Architecture:** MVVM (Model-View-ViewModel)
 *   **Navigation:** Android Jetpack Navigation Component
 *   **Networking:** Retrofit & OkHttp
 *   **Local Database:** Room Database
 
 ## 📸 Screenshots
-*(Add screenshots of your app here once uploaded)*
+*(Add screenshots of your newly modernized Material 3 app here once uploaded)*
 
 ## 💻 Getting Started
 

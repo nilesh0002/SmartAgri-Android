@@ -21,22 +21,6 @@ class FertilizerFragment : Fragment(R.layout.fragment_fertilizer) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentFertilizerBinding.bind(view)
 
-        val cropNames = listOf(
-            "Wheat", "Rice", "Maize", "Sugarcane", "Cotton", "Mustard", "Soybean", "Groundnut", 
-            "Bajra (Pearl Millet)", "Jowar (Sorghum)", "Barley", "Oats", "Ragi", 
-            "Tomato", "Potato", "Onion", "Garlic", "Ginger", "Turmeric",
-            "Cabbage", "Cauliflower", "Brinjal (Eggplant)", "Okra (Ladyfinger)", "Spinach",
-            "Apple", "Mango", "Banana", "Orange", "Papaya", "Grapes", "Pomegranate",
-            "Coffee", "Tea", "Rubber", "Coconut", "Cashew", "Almond",
-            "Chana (Chickpea)", "Toor (Pigeon Pea)", "Moong (Green Gram)", "Urad (Black Gram)"
-        )
-        val adapter = ArrayAdapter(
-            requireContext(),
-            android.R.layout.simple_dropdown_item_1line,
-            cropNames
-        )
-        binding?.spinnerCrop?.setAdapter(adapter)
-
         val soilTypes = listOf(
             "Alluvial Soil", "Black Soil (Regur)", "Red Soil", "Laterite Soil", 
             "Desert/Arid Soil", "Mountain/Forest Soil", "Peat/Marshy Soil",
@@ -50,11 +34,11 @@ class FertilizerFragment : Fragment(R.layout.fragment_fertilizer) {
         binding?.spinnerSoilType?.setAdapter(soilAdapter)
 
         binding?.btnGetRecommendation?.setOnClickListener {
-            val selectedCrop = binding?.spinnerCrop?.text?.toString() ?: ""
+            val selectedCrop = binding?.etCropSearch?.text?.toString() ?: ""
             val soilType = binding?.spinnerSoilType?.text?.toString() ?: ""
 
             if (selectedCrop.isEmpty() || soilType.isEmpty()) {
-                binding?.tvResult?.text = "Please select or type both crop and soil type."
+                binding?.tvResult?.text = "Please enter crop and select soil type."
                 binding?.cardResult?.visibility = View.VISIBLE
                 return@setOnClickListener
             }

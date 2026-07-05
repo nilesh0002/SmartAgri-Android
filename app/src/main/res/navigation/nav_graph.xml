@@ -92,7 +92,17 @@
         android:id="@+id/schemesFragment"
         android:name="com.example.smartagriculture.fragments.SchemesFragment"
         android:label="SchemesFragment"
-        tools:layout="@layout/fragment_info_list" />
+        tools:layout="@layout/fragment_info_list">
+        <action
+            android:id="@+id/action_schemesFragment_to_schemeDetailFragment"
+            app:destination="@id/schemeDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/schemeDetailFragment"
+        android:name="com.example.smartagriculture.fragments.SchemeDetailFragment"
+        android:label="SchemeDetailFragment"
+        tools:layout="@layout/fragment_scheme_detail" />
 
     <fragment
         android:id="@+id/soilFragment"
@@ -166,7 +176,21 @@
         android:id="@+id/marketFragment"
         android:name="com.example.smartagriculture.fragments.MarketFragment"
         android:label="MarketFragment"
-        tools:layout="@layout/fragment_market" />
+        tools:layout="@layout/fragment_market">
+        <action
+            android:id="@+id/action_marketFragment_to_marketDetailFragment"
+            app:destination="@id/marketDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/marketDetailFragment"
+        android:name="com.example.smartagriculture.fragments.MarketDetailFragment"
+        android:label="MarketDetailFragment"
+        tools:layout="@layout/fragment_market_detail">
+        <argument
+            android:name="marketPrice"
+            app:argType="com.example.smartagriculture.model.MarketPrice" />
+    </fragment>
 
     <fragment
         android:id="@+id/moreFragment"

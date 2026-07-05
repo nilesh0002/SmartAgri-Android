@@ -8,8 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.smartagriculture.R
 import com.example.smartagriculture.model.MarketPrice
 
-class MarketAdapter(private var prices: List<MarketPrice>) :
-    RecyclerView.Adapter<MarketAdapter.MarketViewHolder>() {
+class MarketAdapter(
+    private var prices: List<MarketPrice>,
+    private val onItemClick: (MarketPrice) -> Unit
+) : RecyclerView.Adapter<MarketAdapter.MarketViewHolder>() {
 
     class MarketViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val tvCommodity: TextView = view.findViewById(R.id.tv_commodity)
@@ -30,6 +32,10 @@ class MarketAdapter(private var prices: List<MarketPrice>) :
         holder.tvMarket.text = item.market
         holder.tvPrice.text = "₹ ${item.price} / quintal"
         holder.tvDate.text = item.date
+        
+        holder.itemView.setOnClickListener {
+            onItemClick(item)
+        }
     }
 
     override fun getItemCount() = prices.size
