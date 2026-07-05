@@ -1,6 +1,6 @@
 # SmartAgri-Android 🌾
 
-A comprehensive Android application for modern farming, built with **Kotlin** and **XML Fragments**. SmartAgri is designed to empower farmers with real-time market data, tailored crop recommendations, and intelligent farming insights right at their fingertips.
+A comprehensive and Excellent Android application for modern farming, built with **Kotlin** and **XML Fragments**. SmartAgri is designed to empower farmers with real-time market data, tailored crop recommendations, and intelligent farming insights right at their fingertips.
 
 ## 🚀 Features
 
