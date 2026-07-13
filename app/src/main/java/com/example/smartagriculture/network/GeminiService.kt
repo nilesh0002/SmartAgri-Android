@@ -1,24 +1,27 @@
 package com.example.smartagriculture.network
 
+import com.example.smartagriculture.BuildConfig
 import com.google.ai.client.generativeai.GenerativeModel
 
 object GeminiService {
-    // Note: The user should provide an API key in a secure way in production.
-    // For this prototype, we will allow it to be passed in or fail gracefully.
-    private const val API_KEY = "YOUR_API_KEY_HERE"
+    private val API_KEY = BuildConfig.GEMINI_API_KEY
     
     // We try to initialize the model. If it fails due to missing key, we handle it in getRecommendation.
     private val generativeModel = try {
-        GenerativeModel(
-            modelName = "gemini-flash-latest",
-            apiKey = API_KEY
-        )
+        if (API_KEY.isNotBlank() && API_KEY != "YOUR_API_KEY_HERE") {
+            GenerativeModel(
+                modelName = "gemini-flash-latest",
+                apiKey = API_KEY
+            )
+        } else {
+            null
+        }
     } catch (e: Exception) {
         null
     }
 
     suspend fun getFertilizerRecommendation(crop: String, soil: String): String {
-        if (API_KEY == "YOUR_API_KEY_HERE" || generativeModel == null) {
+        if (generativeModel == null) {
             // Mock response for UI testing
             kotlinx.coroutines.delay(1500) // Simulate network delay
             return """
@@ -29,7 +32,7 @@ object GeminiService {
                 3. Dosage: Apply 50 kg per acre in two split doses (baseline and 30 days after planting).
                 4. Pro Tip: Maintain adequate soil moisture when applying fertilizer to ensure optimal nutrient absorption!
                 
-                (Note: This is a simulated response. Please add a valid Google Gemini API key to GeminiService.kt for real AI recommendations.)
+                (Note: This is a simulated response. Please add a valid Google Gemini API key to local.properties for real AI recommendations.)
             """.trimIndent()
         }
         
@@ -48,7 +51,7 @@ object GeminiService {
             val response = generativeModel.generateContent(prompt)
             response.text ?: "Could not generate a recommendation at this time."
         } catch (e: Exception) {
-            "AI Recommendation Unavailable: Please provide a valid Gemini API key in GeminiService.kt.\n\nFallback Recommendation:\nNitrogen-rich fertilizers usually help most crops in $soil soil."
+            "AI Recommendation Unavailable: Please provide a valid Gemini API key in local.properties.\n\nFallback Recommendation:\nNitrogen-rich fertilizers usually help most crops in $soil soil."
         }
     }
 }
