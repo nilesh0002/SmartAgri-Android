@@ -43,7 +43,7 @@ class MarketFragment : Fragment(R.layout.fragment_market) {
         binding.rvMarket.visibility = View.GONE
 
         val mandiApi = com.example.smartagriculture.network.RetrofitClient.mandiRetrofit.create(com.example.smartagriculture.network.MandiApiService::class.java)
-        val apiKey = "579b464db66ec23bdd000001cdd3946e44ce4aad7209ff7b23ac571b" // Free access key
+        val apiKey = "579b464db66ec23bdd0000015be113541a9d46725eb5a4f80edec8c4" // User API key
 
         lifecycleScope.launch {
             try {

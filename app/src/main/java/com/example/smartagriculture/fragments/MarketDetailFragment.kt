@@ -70,7 +70,7 @@ class MarketDetailFragment : Fragment(R.layout.fragment_market_detail) {
 
     private fun fetchRealTrendData(chart: LineChart, commodity: String) {
         val mandiApi = com.example.smartagriculture.network.RetrofitClient.mandiRetrofit.create(com.example.smartagriculture.network.MandiApiService::class.java)
-        val apiKey = "579b464db66ec23bdd000001cdd3946e44ce4aad7209ff7b23ac571b"
+        val apiKey = "579b464db66ec23bdd0000015be113541a9d46725eb5a4f80edec8c4"
 
         lifecycleScope.launch {
             try {

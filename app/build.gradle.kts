@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.kotlinCompose)
@@ -5,6 +7,12 @@ plugins {
     alias(libs.plugins.google.services)
     alias(libs.plugins.navigationSafeArgs)
     alias(libs.plugins.kotlin.parcelize)
+}
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(21))
+    }
 }
 
 android {
@@ -21,7 +29,7 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         // Load API key from local.properties
-        val properties = java.util.Properties()
+        val properties = Properties()
         val localPropertiesFile = project.rootProject.file("local.properties")
         if (localPropertiesFile.exists()) {
             localPropertiesFile.inputStream().use { properties.load(it) }
